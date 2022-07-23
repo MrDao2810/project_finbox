@@ -162,15 +162,18 @@ class _MyHomePageState extends State<ResetPassPage> {
                               : null,
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              backgroundColor: MaterialStateProperty.all(
-                                  const Color(0xff1E60C0)),
+                                  RoundedRectangleBorder>(
+                                const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
                               padding: MaterialStateProperty.all(
                                   const EdgeInsets.all(25)),
-                              textStyle: MaterialStateProperty.all(
-                                  const TextStyle(fontSize: 16))),
+                              textStyle:
+                                  MaterialStateProperty.all(const TextStyle(
+                                fontSize: 16,
+                              ))),
                           child: const Text('XÁC NHẬN'),
                         ),
                       ),

@@ -36,7 +36,7 @@ class _MyHomePageState extends State<PassPageOtp> {
               Container(
                 padding: const EdgeInsets.only(bottom: 32),
                 child: const Text(
-                  'Nhập mã OTP đã được gửi đến số điện thoại *******112',
+                  'Nhập mã OTP đã được gửi đến số điện thoại \n *******112',
                   style: TextStyle(
                     color: Color(0xff999999),
                     fontFamily: "Inter",
