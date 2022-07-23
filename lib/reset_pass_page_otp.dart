@@ -22,7 +22,7 @@ class _MyHomePageState extends State<PassPageOtp> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.only(left: 2, bottom: 10, right: 141),
+                padding: const EdgeInsets.only(left: 2, bottom: 10),
                 child: const Text(
                   'Đặt lại mật khẩu',
                   style: TextStyle(
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<PassPageOtp> {
                 ),
               ),
               Container(
-                color: Color(0xffF7F4F4),
+                color: const Color(0xffF7F4F4),
                 height: 45,
                 child: TextField(
                   textAlign: TextAlign.justify,
@@ -67,33 +67,33 @@ class _MyHomePageState extends State<PassPageOtp> {
                       borderSide:
                           BorderSide(width: 1, color: Color(0xffF7F4F4)),
                     ),
-                    suffixIcon: Row(
-                      mainAxisSize: MainAxisSize.min, // <-- important
-                      children: const [
-                        Text(
-                          'Gửi lại mã',
-                          style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff1B447E)),
-                        ),
-                        //const SizedBox(width: 12.65),
-                        // second element
-                      ],
-                    ),
+                    suffixIcon:
+                        Row(mainAxisSize: MainAxisSize.min, // <-- important
+                            children: [
+                          Container(
+                            padding: const EdgeInsets.only(right: 17),
+                            child: const Text(
+                              'Gửi lại mã',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff1B447E)),
+                              //const SizedBox(width: 12.65),
+                              // second element
+                            ),
+                          )
+                        ]),
                   ),
                 ),
               ),
               Align(
                 child: Container(
-                  padding: const EdgeInsets.only(bottom: 22),
-                  margin: const EdgeInsets.only(top: 30, bottom: 30),
+                  margin: const EdgeInsets.only(top: 28),
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     style: ButtonStyle(
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -110,25 +110,26 @@ class _MyHomePageState extends State<PassPageOtp> {
                 ),
               ),
               Container(
-                child: RichText(
-                  text: const TextSpan(
-                    text: 'Bạn không nhận được mã?',
-                    style: TextStyle(
-                      color: Color(0xff000000),
-                      fontFamily: "Roboto",
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
+                padding: const EdgeInsets.only(top: 22),
+                child: Center(
+                  child: RichText(
+                    text: const TextSpan(
+                      text: 'Bạn không nhận được mã? \n   Liên hệ trợ giúp ',
+                      style: TextStyle(
+                        color: Color(0xff000000),
+                        fontFamily: "Roboto",
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Tại đây',
+                            style: TextStyle(
+                                color: Color(0xff1E60C0), fontFamily: "Inter")),
+                      ],
                     ),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: ' Liên hệ trợ giúp ',
-                          style: TextStyle(color: Color(0xff000000))),
-                      TextSpan(
-                          text: 'Tại đây',
-                          style: TextStyle(color: Color(0xff0B408E))),
-                    ],
                   ),
-                ),
+                )
               ),
             ],
           ),

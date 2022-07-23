@@ -45,7 +45,7 @@ class _MyHomePageState extends State<ResetPassPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.only(left: 2, bottom: 10, right: 141),
+                padding: const EdgeInsets.only(left: 2, bottom: 10),
                 child: const Text(
                   'Đặt lại mật khẩu',
                   style: TextStyle(
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<ResetPassPage> {
                 padding: const EdgeInsets.only(top: 32, bottom: 14),
                 child: RichText(
                   text: const TextSpan(
-                    text: 'SĐT ',
+                    text: 'SĐT',
                     style: TextStyle(
                       color: Color(0xff999999),
                       fontFamily: "Roboto",
@@ -102,7 +102,8 @@ class _MyHomePageState extends State<ResetPassPage> {
                       height: 45,
                       child: TextFormField(
                         onChanged: (text) {
-                          if (_formKey.currentState == null || !_formKey.currentState!.validate()) {
+                          if (_formKey.currentState == null ||
+                              !_formKey.currentState!.validate()) {
                             setState(() {
                               isValid = false;
                             });
@@ -148,13 +149,17 @@ class _MyHomePageState extends State<ResetPassPage> {
                         margin: const EdgeInsets.only(top: 30, bottom: 30),
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: isValid ? () {
-                            // you'd often call a server or save the information in a database.
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const PassPageOtp()),
-                            );
-                          } : null,
+                          onPressed: isValid
+                              ? () {
+                                  // you'd often call a server or save the information in a database.
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PassPageOtp()),
+                                  );
+                                }
+                              : null,
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
