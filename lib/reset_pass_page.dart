@@ -31,6 +31,8 @@ class ResetPassPage extends StatefulWidget {
 class _MyHomePageState extends State<ResetPassPage> {
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
+  // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  RegExp regex = RegExp(r'(^(?:[+0]8)?[0-9]{10}$)');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,7 +128,7 @@ class _MyHomePageState extends State<ResetPassPage> {
                           hintText: 'Nhập Số điện thoại của bạn',
                         ),
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          if (value == null || value.isEmpty || !regex.hasMatch(value)) {
                             if (isValid) {
                               setState(() {
                                 isValid = false;
@@ -134,11 +136,11 @@ class _MyHomePageState extends State<ResetPassPage> {
                             }
                             return 'Please enter some text';
                           } else {
-                            if (!isValid) {
-                              setState(() {
-                                isValid = true;
-                              });
-                            }
+                              if (!isValid && regex.hasMatch(value)) {
+                                setState(() {
+                                  isValid = true;
+                                });
+                              }
                             return null;
                           }
                         },
@@ -162,12 +164,11 @@ class _MyHomePageState extends State<ResetPassPage> {
                               : null,
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                ),
-                              ),
+                                      RoundedRectangleBorder>(
+                                  const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),),
                               padding: MaterialStateProperty.all(
                                   const EdgeInsets.all(25)),
                               textStyle:
