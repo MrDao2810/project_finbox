@@ -32,7 +32,7 @@ class _MyHomePageState extends State<ResetPassPage> {
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
   // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-  RegExp regex = RegExp(r'(^(?:[+0]8)?[0-9]{10}$)');
+  RegExp regex = RegExp(r'(^0{1}8{1}[0-9]{10}$)');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
