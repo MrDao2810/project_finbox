@@ -32,7 +32,7 @@ class _MyHomePageState extends State<ResetPassPage> {
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
   // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-  RegExp regex = RegExp(r'(^0{1}8{1}[0-9]{10}$)');
+  RegExp regex = RegExp(r'(^0{1}8{1}[0-9]{8}$)');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +101,6 @@ class _MyHomePageState extends State<ResetPassPage> {
                 child: Column(
                   children: [
                     Container(
-                      height: 45,
                       child: TextFormField(
                         onChanged: (text) {
                           if (_formKey.currentState == null ||
@@ -119,28 +118,31 @@ class _MyHomePageState extends State<ResetPassPage> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(6.0),
                           ),
-                          contentPadding: const EdgeInsets.only(
-                              left: 30, top: 18, bottom: 15),
+                          contentPadding:
+                              const EdgeInsets.only(left: 30, top: 18),
                           hintStyle: const TextStyle(
                               color: Color(0xffCCCFD4),
                               fontSize: 14,
                               fontFamily: "Inter"),
                           hintText: 'Nhập Số điện thoại của bạn',
+                          // labelText: 'Number Phone ',
                         ),
                         validator: (value) {
-                          if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              !regex.hasMatch(value)) {
                             if (isValid) {
                               setState(() {
                                 isValid = false;
                               });
                             }
-                            return 'Please enter some text';
+                            return 'Please enter number phone';
                           } else {
-                              if (!isValid && regex.hasMatch(value)) {
-                                setState(() {
-                                  isValid = true;
-                                });
-                              }
+                            if (!isValid && regex.hasMatch(value)) {
+                              setState(() {
+                                isValid = true;
+                              });
+                            }
                             return null;
                           }
                         },
@@ -165,16 +167,14 @@ class _MyHomePageState extends State<ResetPassPage> {
                           style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
-                                  const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),),
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color(0xff1E60C0)),
                               padding: MaterialStateProperty.all(
                                   const EdgeInsets.all(25)),
-                              textStyle:
-                                  MaterialStateProperty.all(const TextStyle(
-                                fontSize: 16,
-                              ))),
+                              textStyle: MaterialStateProperty.all(
+                                  const TextStyle(fontSize: 16))),
                           child: const Text('XÁC NHẬN'),
                         ),
                       ),
