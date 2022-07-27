@@ -13,6 +13,7 @@ class FinboxApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -32,7 +33,8 @@ class _MyHomePageState extends State<ResetPassPage> {
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
   // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-  RegExp regex = RegExp(r'(^0{1}8{1}[0-9]{8}$)');
+  RegExp regex = RegExp(r'(^[84|0]+[3|5|7|8|9]+[0-9]{8}$)'); // [0-9|a-z|A-Z]{6}
+  // +|)84)|0)(3|5|7|8|9)+([0-9]{8}
 
   Widget _generateTitleSection() {
     return Column(
@@ -86,7 +88,7 @@ class _MyHomePageState extends State<ResetPassPage> {
                 text: 'SĐT',
                 style: TextStyle(
                   color: Color(0xff999999),
-                  fontFamily: "Roboto",
+                  fontFamily: "Inter",
                   fontSize: 16.0,
                   fontWeight: FontWeight.w500,
                 ),
@@ -150,19 +152,22 @@ class _MyHomePageState extends State<ResetPassPage> {
                 onPressed: isValid
                     ? () {
                         // you'd often call a server or save the information in a database.
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PassPageOtp()),
-                        );
+                        Navigator.of(context).push(_createRoute());
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const PassPageOtp()),
+                        // );
                       }
                     : null,
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
-                    backgroundColor:
-                        MaterialStateProperty.all(const Color(0xff1E60C0)),
+                    backgroundColor: isValid
+                        ? MaterialStateProperty.all(const Color(0xff1E60C0))
+                        : MaterialStateProperty.all(
+                            const Color(0xff999999).withOpacity(0.6)),
                     padding:
                         MaterialStateProperty.all(const EdgeInsets.all(25)),
                     textStyle: MaterialStateProperty.all(
@@ -187,12 +192,29 @@ class _MyHomePageState extends State<ResetPassPage> {
       body: Container(
         margin: const EdgeInsets.only(top: 30, left: 15, right: 15),
         child: ListView(
-          children: [
-            _generateTitleSection(),
-            _generateFormSection()
-          ],
+          children: [_generateTitleSection(), _generateFormSection()],
         ),
       ),
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }
+}
+
+// Animate a page route transition
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const PassPageOtp(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
