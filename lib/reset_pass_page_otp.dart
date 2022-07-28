@@ -143,7 +143,7 @@ class _MyHomePageState extends State<PassPageOtp> {
                     backgroundColor: isValid
                         ? MaterialStateProperty.all(const Color(0xff1E60C0))
                         : MaterialStateProperty.all(
-                            const Color(0xff999999).withOpacity(0.6)),
+                        const Color(0xff999999).withOpacity(0.6)),
                     padding:
                         MaterialStateProperty.all(const EdgeInsets.all(25)),
                     textStyle: MaterialStateProperty.all(
@@ -152,50 +152,71 @@ class _MyHomePageState extends State<PassPageOtp> {
               ),
             ),
           ),
+          // Container(
+          //   padding: const EdgeInsets.only(top: 22),
+          //   child: const Center(
+          //     child: Text(
+          //       'Bạn không nhận được mã?',
+          //       style: TextStyle(
+          //         color: Color(0xff000000),
+          //         fontFamily: "Roboto",
+          //         fontSize: 16.0,
+          //         fontWeight: FontWeight.w400,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // Row(
+          //   children: [
+          //     Container(
+          //       padding: const EdgeInsets.only(top: 2),
+          //       child: const Center(
+          //         child: Text(
+          //           'Liên hệ trợ giúp',
+          //           style: TextStyle(
+          //             color: Color(0xff000000),
+          //             fontFamily: "Roboto",
+          //             fontSize: 16.0,
+          //             fontWeight: FontWeight.w400,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     Container(
+          //       padding: const EdgeInsets.only(top: 2),
+          //       child: const Center(
+          //         child: Text('Tại đây'),
+          //       ),
+          //     )
+          //   ],
+          // )
           Container(
-            padding: const EdgeInsets.only(top: 22),
-            child: const Center(
-              child: Text(
-                'Bạn không nhận được mã ?',
-                style: TextStyle(
-                  color: Color(0xff000000),
-                  fontFamily: "Inter",
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 2),
-                child: const Text(
-                  'Liên hệ trợ giúp',
-                  style: TextStyle(
-                    color: Color(0xff000000),
-                    fontFamily: "Inter",
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w400,
+              padding: const EdgeInsets.only(top: 22),
+              child: Center(
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: 'Bạn không nhận được mã? \n   Liên hệ trợ giúp ',
+                    style: const TextStyle(
+                      color: Color(0xff000000),
+                      fontFamily: "Inter",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Tại đây',
+                        style: const TextStyle(
+                            color: Color(0xff1E60C0), fontFamily: "Inter"),
+                        recognizer: TapGestureRecognizer()..onTap = () {
+
+                        }
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Container(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Tại đây',
-                      style: TextStyle(
-                        color: Color(0xff1E60C0),
-                        fontFamily: "Inter",
-                        fontSize: 16,
-                      ),
-                    ),
-                  ))
-            ],
-          )
+              )
+          ),
         ],
       ),
     );
