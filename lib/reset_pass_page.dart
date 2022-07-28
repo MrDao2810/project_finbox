@@ -33,7 +33,7 @@ class _MyHomePageState extends State<ResetPassPage> {
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
   // String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-  RegExp regex = RegExp(r'(^[84|0]+[3|5|7|8|9]+[0-9]{8}$)'); // [0-9|a-z|A-Z]{6}
+  RegExp regex = RegExp(r'(^[84|0]+[3|5|7|8|9]+[0-9]{8}$)');
   // +|)84)|0)(3|5|7|8|9)+([0-9]{8}
 
   Widget _generateTitleSection() {
